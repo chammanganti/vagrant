@@ -1,0 +1,10 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    config.vm.box = "ubuntu/focal64"
+
+    config.vm.network "forwarded_port", guest: 22, host_ip: "127.0.0.2", host: 22
+
+    config.vm.provision :shell, path: "init.sh"
+    config.vm.provision :shell, path: "z.sh", privileged: false
+end
